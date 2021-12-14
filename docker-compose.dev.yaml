@@ -1,0 +1,13 @@
+version: "3"
+
+services:
+  app:
+    build:
+      context: .
+    command: bash -c 'while !</dev/tcp/db/5432; do sleep 1; done; python3 manage.py collectstatic --no-input; python3 manage.py migrate; uvicorn mysite.asgi:application --port 8000 --host 0.0.0.0 --reload '
+    volumes:
+      - static:/app/static
+      - .:/app/
+    depends_on:
+      - db
+    restart: on-failure
