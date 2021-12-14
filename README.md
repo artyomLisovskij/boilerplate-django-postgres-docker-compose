@@ -9,6 +9,6 @@ Run in dev(with hot reload):
 `docker-compose -f docker-compose.yaml -f docker-compose.dev.yaml up -d`
 
 You can make any changes in code, they will appear automatically. If you want to execute something with manage.py use:
-`docker-compose exec app makemigrations`
-`docker-compose exec app createsuperuser`
+`docker-compose exec app python3 manage.py makemigrations`
+`docker-compose exec app python3 manage.py createsuperuser`
 and so on.
